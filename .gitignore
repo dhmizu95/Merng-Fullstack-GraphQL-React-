@@ -1,0 +1,7 @@
+# server files
+server/node_modules
+server/package-lock.json
+server/src/config.js
+
+# client files
+client/node_modules

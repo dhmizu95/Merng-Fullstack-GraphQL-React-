@@ -5,7 +5,7 @@ const validateRegister = (username, email, sex, password, confirmPassword) => {
 		errors.username = 'Username must not empty.';
 	}
 	if (sex.trim() === '') {
-		errors.username = 'Sex must be selected.';
+		errors.sex = 'Sex must be selected.';
 	}
 	if (email.trim() === '') {
 		errors.email = 'Email must not empty.';

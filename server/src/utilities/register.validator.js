@@ -1,8 +1,11 @@
-const validateRegister = (username, email, password, confirmPassword) => {
+const validateRegister = (username, email, sex, password, confirmPassword) => {
 	const errors = {};
 
 	if (username.trim() === '') {
 		errors.username = 'Username must not empty.';
+	}
+	if (sex.trim() === '') {
+		errors.username = 'Sex must be selected.';
 	}
 	if (email.trim() === '') {
 		errors.email = 'Email must not empty.';

@@ -50,12 +50,13 @@ module.exports = {
 		},
 		register: async (
 			_,
-			{ registerInput: { username, email, password, confirmPassword } }
+			{ registerInput: { username, email, password, confirmPassword, sex } }
 		) => {
 			// validate user data
 			const { errors, valid } = validateRegister(
 				username,
 				email,
+				sex,
 				password,
 				confirmPassword
 			);
@@ -77,9 +78,17 @@ module.exports = {
 				username,
 				password,
 				email,
+				sex,
 				createdAt: new Date().toISOString(),
 			});
 
+			if (newUser.sex === 'male') {
+				newUser.avatar =
+					'https://react.semantic-ui.com/images/avatar/large/steve.jpg';
+			} else if (newUser.sex === 'female') {
+				newUser.avatar =
+					'https://react.semantic-ui.com/images/avatar/large/molly.png';
+			}
 			const response = await newUser.save();
 
 			const token = generateToken(response);

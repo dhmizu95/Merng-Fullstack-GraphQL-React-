@@ -9,6 +9,7 @@ Please, follow the instruction below to start the Apollo GraphQL server quickly.
 ##### Install dependencies
 
 ```
+$ cd server
 $ npm install
 ```
 
@@ -33,6 +34,7 @@ $ npm install
 ##### Start the server
 
 ```
+$ cd client
 $ npm start
 ```
 

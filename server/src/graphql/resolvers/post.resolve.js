@@ -6,7 +6,10 @@ module.exports = {
 	Query: {
 		getPosts: async () => {
 			try {
-				const posts = await Post.find().sort({ createdAt: -1 });
+				const posts = await Post.find()
+					.populate('user', ['avatar'])
+					.sort({ createdAt: -1 });
+
 				return posts;
 			} catch (error) {
 				throw new Error(error);
@@ -14,7 +17,7 @@ module.exports = {
 		},
 		getPost: async (_, { postId }) => {
 			try {
-				const post = await Post.findById(postId);
+				const post = await Post.findById(postId).populate('users', ['avatar']);
 				if (post) {
 					return post;
 				} else {

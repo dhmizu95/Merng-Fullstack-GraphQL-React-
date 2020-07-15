@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "src/server.js",
 	"scripts": {
-		"start": "nodemon"
+		"start": "nodemon",
+		"serve": "node"
 	},
 	"keywords": [],
 	"author": "Mizu Rahman",

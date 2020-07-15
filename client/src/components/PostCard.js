@@ -11,7 +11,6 @@ const PostCard = ({ post }) => {
 		createdAt,
 		likeCount,
 		commentCount,
-		likes,
 		user: { avatar },
 	} = post;
 

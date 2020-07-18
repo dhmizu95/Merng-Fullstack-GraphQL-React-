@@ -4,7 +4,7 @@ import { Grid, Transition } from 'semantic-ui-react';
 import PostCard from './../components/PostCard';
 import { AuthContext } from '../context/auth';
 import PostForm from './../components/PostForm';
-import { FETCH_POSTS_QUERY } from '../utilities/query';
+import { FETCH_POSTS_QUERY } from '../utilities/queries';
 
 const Home = () => {
 	const { user } = useContext(AuthContext);

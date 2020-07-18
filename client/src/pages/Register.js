@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Form, Button, Dropdown } from 'semantic-ui-react';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { useForm } from './../utilities/hooks';
 import { AuthContext } from '../context/auth';
+import { REGISTER_USER_MUTATION } from '../utilities/queries';
 
 const Register = (props) => {
 	const context = useContext(AuthContext);
@@ -23,7 +24,7 @@ const Register = (props) => {
 		}
 	);
 
-	const [registerUser, { loading }] = useMutation(REGISTER_USER, {
+	const [registerUser, { loading }] = useMutation(REGISTER_USER_MUTATION, {
 		update(_, { data: { register: userData } }) {
 			context.login(userData);
 			props.history.push('/');
@@ -106,32 +107,5 @@ const Register = (props) => {
 		</div>
 	);
 };
-
-const REGISTER_USER = gql`
-	mutation register(
-		$username: String!
-		$email: String!
-		$sex: String!
-		$password: String!
-		$confirmPassword: String!
-	) {
-		register(
-			registerInput: {
-				username: $username
-				email: $email
-				sex: $sex
-				password: $password
-				confirmPassword: $confirmPassword
-			}
-		) {
-			id
-			username
-			sex
-			token
-			avatar
-			createdAt
-		}
-	}
-`;
 
 export default Register;

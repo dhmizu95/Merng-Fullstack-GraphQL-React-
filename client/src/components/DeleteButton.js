@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import { Icon, Button, Confirm } from 'semantic-ui-react';
-import { gql, useMutation } from '@apollo/client';
-import { FETCH_POSTS_QUERY } from '../utilities/query';
+import { useMutation } from '@apollo/client';
+import {
+	FETCH_POSTS_QUERY,
+	DELETE_POST_MUTATION,
+	DELETE_COMMENT_MUTATION,
+} from '../utilities/queries';
 
-const DeletePostButton = ({ postId, callback }) => {
+const DeleteButton = ({ postId, commentId, callback }) => {
 	const [confirmOpen, setConfirmOpen] = useState(false);
 
-	const [deletePost] = useMutation(DELETE_POST_MUTATION, {
+	const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION;
+
+	const [deletePostOrComment] = useMutation(mutation, {
 		update() {
 			setConfirmOpen(false);
 			if (callback) callback();
 		},
-		variables: { postId },
+		variables: { postId, commentId },
 		refetchQueries: [{ query: FETCH_POSTS_QUERY }],
 	});
 
@@ -28,16 +34,10 @@ const DeletePostButton = ({ postId, callback }) => {
 			<Confirm
 				open={confirmOpen}
 				onCancel={() => setConfirmOpen(false)}
-				onConfirm={deletePost}
+				onConfirm={deletePostOrComment}
 			/>
 		</>
 	);
 };
 
-const DELETE_POST_MUTATION = gql`
-	mutation deletePost($postId: ID!) {
-		deletePost(postId: $postId)
-	}
-`;
-
-export default DeletePostButton;
+export default DeleteButton;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { useForm } from './../utilities/hooks';
 import { gql, useMutation } from '@apollo/client';
-import { FETCH_POSTS_QUERY } from '../utilities/query';
+import { FETCH_POSTS_QUERY, CREATE_POST_MUTATION } from '../utilities/queries';
 
 const PostForm = () => {
 	const [errors, setErrors] = useState('');
@@ -55,30 +55,5 @@ const PostForm = () => {
 		</div>
 	);
 };
-
-const CREATE_POST_MUTATION = gql`
-	mutation createPost($body: String!) {
-		createPost(body: $body) {
-			id
-			username
-			body
-			createdAt
-			likeCount
-			commentCount
-			likes {
-				username
-			}
-			comments {
-				id
-				username
-				body
-				createdAt
-			}
-			user {
-				avatar
-			}
-		}
-	}
-`;
 
 export default PostForm;

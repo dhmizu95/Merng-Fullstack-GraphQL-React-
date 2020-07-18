@@ -4,7 +4,7 @@ import momemt from 'moment';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth';
 import LikeButton from './LikeButton';
-import DeletePostButton from './DeletePostButton';
+import DeleteButton from './DeleteButton';
 
 const PostCard = ({ post }) => {
 	const {
@@ -40,7 +40,7 @@ const PostCard = ({ post }) => {
 						{commentCount}
 					</Label>
 				</Button>
-				{user && user.username === username && <DeletePostButton postId={id} />}
+				{user && user.username === username && <DeleteButton postId={id} />}
 			</Card.Content>
 		</Card>
 	);

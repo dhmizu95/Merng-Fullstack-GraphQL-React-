@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { useForm } from './../utilities/hooks';
-import { gql, useMutation } from '@apollo/client';
-import { FETCH_POSTS_QUERY, CREATE_POST_MUTATION } from '../utilities/queries';
+import { useMutation } from '@apollo/client';
+import { FETCH_POSTS_QUERY } from '../utilities/queries';
+import { CREATE_POST_MUTATION } from '../utilities/mutations';
 
 const PostForm = () => {
 	const [errors, setErrors] = useState('');

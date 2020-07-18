@@ -7,16 +7,15 @@ import {
 	Icon,
 	Button,
 	Form,
+	Popup,
 } from 'semantic-ui-react';
 import { useQuery, useMutation } from '@apollo/client';
 import momemt from 'moment';
 import LikeButton from './../components/LikeButton';
 import { AuthContext } from '../context/auth';
 import DeleteButton from '../components/DeleteButton';
-import {
-	FETCH_POST_QUERY,
-	CREATE_COMMENT_MUTATION,
-} from '../utilities/queries';
+import { FETCH_POST_QUERY } from '../utilities/queries';
+import { CREATE_COMMENT_MUTATION } from '../utilities/mutations';
 
 const SinglePost = (props) => {
 	const postId = props.match.params.postId;
@@ -76,18 +75,25 @@ const SinglePost = (props) => {
 							</Card.Content>
 							<Card.Content extra>
 								<LikeButton post={{ id, likes, likeCount }} user={user} />
-								<Button
-									as='div'
-									labelPosition='right'
-									onClick={() => console.log('Button clicked')}
-								>
-									<Button basic color='blue'>
-										<Icon name='comments' />
-									</Button>
-									<Label basic color='blue' pointing='left'>
-										{commentCount}
-									</Label>
-								</Button>
+								<Popup
+									content='Commnet on post'
+									inverted
+									trigger={
+										<Button
+											as='div'
+											labelPosition='right'
+											onClick={() => console.log('Button clicked')}
+										>
+											<Button basic color='blue'>
+												<Icon name='comments' />
+											</Button>
+											<Label basic color='blue' pointing='left'>
+												{commentCount}
+											</Label>
+										</Button>
+									}
+								/>
+
 								{user && user.username === username && (
 									<DeleteButton postId={id} callback={deletePostCallback} />
 								)}

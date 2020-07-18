@@ -3,7 +3,7 @@ import { Form, Button, Dropdown } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
 import { useForm } from './../utilities/hooks';
 import { AuthContext } from '../context/auth';
-import { REGISTER_USER_MUTATION } from '../utilities/queries';
+import { REGISTER_USER_MUTATION } from '../utilities/mutations';
 
 const Register = (props) => {
 	const context = useContext(AuthContext);

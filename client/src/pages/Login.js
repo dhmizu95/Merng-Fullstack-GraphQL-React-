@@ -3,7 +3,7 @@ import { Form, Button } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
 import { useForm } from './../utilities/hooks';
 import { AuthContext } from '../context/auth';
-import { LOGIN_USER_MUTATION } from '../utilities/queries';
+import { LOGIN_USER_MUTATION } from '../utilities/mutations';
 
 const Login = (props) => {
 	const context = useContext(AuthContext);

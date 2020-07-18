@@ -17,7 +17,7 @@ module.exports = {
 		},
 		getPost: async (_, { postId }) => {
 			try {
-				const post = await Post.findById(postId).populate('users', ['avatar']);
+				const post = await Post.findById(postId).populate('user', ['avatar']);
 				if (post) {
 					return post;
 				} else {
@@ -43,7 +43,10 @@ module.exports = {
 				createdAt: new Date().toISOString(),
 			});
 
-			const post = await newPost.save();
+			const response = await newPost.save();
+			const post = await Post.findById(response.id).populate('user', [
+				'avatar',
+			]);
 
 			context.pubsub.publish('NEW_POST', {
 				newPost: post,
